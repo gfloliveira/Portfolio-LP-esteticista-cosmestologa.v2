@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ANA BEATRIZ — Protocolo Dermal</title>
+  <title>Ana Beatriz — Esteticista & Cosmetóloga</title>
 
   <!-- Fonts: Clash Display (brutalista) + Space Mono (laboratorial) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -150,22 +150,6 @@
       z-index: 0;
     }
 
-    /* ─ Scanlines ─ */
-    #hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      background: repeating-linear-gradient(
-        to bottom,
-        transparent 0px,
-        transparent 3px,
-        rgba(0,0,0,0.04) 3px,
-        rgba(0,0,0,0.04) 4px
-      );
-      pointer-events: none;
-    }
-
     /* ─ Radial vignette ─ */
     #hero::after {
       content: '';
@@ -195,12 +179,12 @@
     }
 
     /* ═══════════════════════════════════════════════════
-       HERO LABEL  — top metadata line
+       HERO EYEBROW  — linha decorativa de entrada
     ═══════════════════════════════════════════════════ */
     .hero-label {
       display: flex;
       align-items: center;
-      gap: 1.2rem;
+      gap: 1.5rem;
       margin-bottom: clamp(1.5rem, 3vh, 2.5rem);
       opacity: 0;
       transform: translateY(-10px);
@@ -208,34 +192,19 @@
 
     .hero-label span {
       font-family: var(--font-mono);
-      font-size: clamp(0.5rem, 0.75vw, 0.68rem);
-      letter-spacing: 0.32em;
+      font-size: clamp(0.5rem, 0.72vw, 0.65rem);
+      letter-spacing: 0.38em;
       text-transform: uppercase;
-      color: rgba(0, 255, 238, 0.65);
+      color: rgba(184, 198, 219, 0.45);
     }
 
     .label-rule {
       display: block;
-      width: clamp(2rem, 3.5vw, 4rem);
+      width: clamp(2.5rem, 4vw, 5rem);
       height: 1px;
       background: var(--grad-holo);
       flex-shrink: 0;
-    }
-
-    .label-dot {
-      display: block;
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: var(--cyan);
-      box-shadow: 0 0 6px var(--cyan);
-      flex-shrink: 0;
-      animation: pulse-dot 2.5s ease-in-out infinite;
-    }
-
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 1; box-shadow: 0 0 6px var(--cyan); }
-      50%       { opacity: 0.4; box-shadow: 0 0 2px var(--cyan); }
+      opacity: 0.6;
     }
 
     /* ═══════════════════════════════════════════════════
@@ -377,34 +346,6 @@
     }
 
     /* ═══════════════════════════════════════════════════
-       CORNER DECORATIONS
-    ═══════════════════════════════════════════════════ */
-    .corner {
-      position: fixed;
-      z-index: 20;
-      font-family: var(--font-mono);
-      font-size: clamp(0.45rem, 0.6vw, 0.58rem);
-      letter-spacing: 0.14em;
-      color: rgba(0, 255, 238, 0.22);
-      line-height: 1.6;
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .corner-tl { top: 2rem; left: 2.5rem; }
-    .corner-br { bottom: 2rem; right: 2.5rem; text-align: right; }
-
-    .blink {
-      animation: blink 2.2s step-end infinite;
-      color: var(--cyan);
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50%       { opacity: 0; }
-    }
-
-    /* ═══════════════════════════════════════════════════
        SCROLL INDICATOR
     ═══════════════════════════════════════════════════ */
     .scroll-hint {
@@ -467,7 +408,6 @@
     ═══════════════════════════════════════════════════ */
     @media (max-width: 768px) {
       .hero-name .line:nth-child(2) .line-inner { padding-left: 0; }
-      .corner-br { display: none; }
     }
   </style>
 </head>
@@ -488,12 +428,11 @@
 
     <div class="hero-inner">
 
-      <!-- Metadata label -->
-      <p class="hero-label" aria-label="Protocolo 001 — Biotecnologia Dermal">
-        <span class="label-dot"></span>
-        <span>PROTOCOLO 001</span>
+      <!-- Eyebrow label -->
+      <p class="hero-label" aria-label="Esteticista e Cosmetóloga">
         <span class="label-rule"></span>
-        <span>BIOTECNOLOGIA DERMAL</span>
+        <span>Esteticista &amp; Cosmetóloga</span>
+        <span class="label-rule"></span>
       </p>
 
       <!-- Colossal name -->
@@ -510,7 +449,7 @@
 
       <!-- CTA Magnetic Button -->
       <div class="cta-wrap">
-        <button class="btn-magnetic" id="cta-btn" aria-label="Iniciar Protocolo de Atendimento">
+        <button class="btn-magnetic" id="cta-btn" aria-label="Agendar Consulta">
 
           <svg class="btn-ring-svg" viewBox="0 0 160 160" aria-hidden="true">
             <defs>
@@ -527,24 +466,13 @@
             <circle class="ring-halo" cx="80" cy="80" r="74" />
           </svg>
 
-          <span class="btn-label">INICIAR<br>PROTOCOLO</span>
+          <span class="btn-label">AGENDAR<br>CONSULTA</span>
 
         </button>
       </div>
 
     </div><!-- /.hero-inner -->
   </section><!-- /#hero -->
-
-  <!-- ── CORNER DECORATIONS ────────────────────────── -->
-  <aside class="corner corner-tl" aria-hidden="true">
-    <div>SESSION_01 &nbsp;/&nbsp; HERO</div>
-    <div>STATUS: <span class="blink">ATIVO</span></div>
-  </aside>
-
-  <aside class="corner corner-br" aria-hidden="true">
-    <div>© 2026 PROTOCOLO DERMAL</div>
-    <div>LAT&nbsp;−23.5505 &nbsp;/&nbsp; LNG&nbsp;−46.6333</div>
-  </aside>
 
   <!-- ── SCROLL INDICATOR ──────────────────────────── -->
   <div class="scroll-hint" aria-hidden="true">
@@ -886,11 +814,10 @@
       duration: 0.9
     }, '-=0.4')
 
-    /* 6. Corner chrome & scroll hint */
-    .to(['.corner', '.scroll-hint'], {
+    /* 6. Scroll hint */
+    .to('.scroll-hint', {
       opacity: 1,
-      duration: 1.1,
-      stagger: 0.12
+      duration: 1.1
     }, '-=0.45');
   })();
 
