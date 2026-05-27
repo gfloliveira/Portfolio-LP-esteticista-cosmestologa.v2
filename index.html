@@ -53,15 +53,14 @@
       box-sizing: border-box;
     }
 
-    html { overflow: hidden; }
+    html { overflow-x: hidden; }
 
     body {
       background: var(--void);
       color: var(--silver-bright);
       font-family: var(--font-mono);
-      overflow: hidden;
+      overflow-x: hidden;
       cursor: none;
-      height: 100vh;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
@@ -409,6 +408,242 @@
     @media (max-width: 768px) {
       .hero-name .line:nth-child(2) .line-inner { padding-left: 0; }
     }
+
+    /* ═══════════════════════════════════════════════════
+       SECTION 02 — SOBRE / A CIÊNCIA
+    ═══════════════════════════════════════════════════ */
+
+    /* Hidden SVG filter container */
+    .svg-filters { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+    /* ─ Horizontal divider between sections ─ */
+    .section-rule {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, transparent 0%, rgba(184,198,219,0.07) 50%, transparent 100%);
+    }
+
+    /* ─ Section layout ─ */
+    #about {
+      position: relative;
+      display: grid;
+      grid-template-columns: 52% 48%;
+      background: var(--void);
+    }
+
+    /* ─ Photo column ─ */
+    .about-col--photo {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .about-photo {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      filter: url(#about-distort);
+    }
+
+    /* CSS placeholder: dramatic studio-lighting atmosphere */
+    .about-photo-placeholder {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      background:
+        radial-gradient(
+          ellipse 50% 58% at 47% 32%,
+          rgba(215, 205, 195, 0.11) 0%,
+          rgba(160, 150, 140, 0.04) 52%,
+          transparent 72%
+        ),
+        radial-gradient(
+          ellipse 75% 38% at 50% 92%,
+          rgba(123, 47, 255, 0.05) 0%,
+          transparent 70%
+        ),
+        linear-gradient(168deg, #141414 0%, #080808 100%);
+    }
+
+    /* Cellular micro-texture (skin science reference) */
+    .photo-cell-bg {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(
+        circle, rgba(184, 198, 219, 0.022) 1px, transparent 1px
+      );
+      background-size: 28px 28px;
+    }
+
+    /* Edge bleed into void */
+    .about-photo-placeholder::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to right,  transparent 75%, var(--void) 100%),
+        linear-gradient(to top,    var(--void) 0%,  transparent 18%),
+        linear-gradient(to bottom, var(--void) 0%,  transparent 14%),
+        linear-gradient(to left,   transparent 90%, var(--void) 100%);
+      pointer-events: none;
+    }
+
+    .photo-placeholder-label {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-mono);
+      font-size: 0.45rem;
+      letter-spacing: 0.42em;
+      color: rgba(184, 198, 219, 0.1);
+      text-transform: uppercase;
+      white-space: nowrap;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* ─ Text column ─ */
+    .about-col--text {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: clamp(4rem, 8vh, 8rem) clamp(2.5rem, 5vw, 6rem);
+    }
+
+    .about-text-inner {
+      width: 100%;
+      max-width: 500px;
+    }
+
+    /* ─ Eyebrow ─ */
+    .about-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      margin-bottom: clamp(2rem, 3.5vh, 3rem);
+      opacity: 0;
+    }
+
+    .about-eyebrow .label-rule { opacity: 0.45; }
+
+    .about-eyebrow span:last-child {
+      font-family: var(--font-mono);
+      font-size: clamp(0.5rem, 0.68vw, 0.6rem);
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: rgba(184, 198, 219, 0.35);
+    }
+
+    /* ─ Heading ─ */
+    .about-heading {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(2.6rem, 4.5vw, 5.5rem);
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      color: var(--silver-bright);
+      margin-bottom: clamp(2rem, 4vh, 3.5rem);
+    }
+
+    .about-heading .line       { display: block; overflow: hidden; }
+    .about-heading .line-inner { display: block; transform: translateY(110%); will-change: transform; }
+
+    /* ─ Pull quote ─ */
+    .about-quote {
+      font-family: var(--font-mono);
+      font-style: italic;
+      font-size: clamp(0.66rem, 0.95vw, 0.82rem);
+      line-height: 1.85;
+      color: rgba(184, 198, 219, 0.48);
+      padding-left: 1.4rem;
+      border-left: 1px solid rgba(0, 255, 238, 0.18);
+      margin-bottom: clamp(1.5rem, 3vh, 2.5rem);
+    }
+
+    /* ─ Bio paragraph ─ */
+    .about-bio {
+      font-family: var(--font-mono);
+      font-size: clamp(0.62rem, 0.9vw, 0.78rem);
+      line-height: 2.0;
+      color: rgba(184, 198, 219, 0.3);
+      margin-bottom: clamp(2.5rem, 5vh, 5rem);
+    }
+
+    /* ─ Character crystallisation ─ */
+    .char {
+      display: inline-block;
+      opacity: 0;
+      filter: blur(8px);
+      will-change: opacity, filter;
+    }
+
+    /* ─ Stats ─ */
+    .about-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(184, 198, 219, 0.07);
+      opacity: 0;
+    }
+
+    .stat-number {
+      display: block;
+      line-height: 1;
+    }
+
+    .stat-value {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(2.2rem, 3.8vw, 4.5rem);
+      color: var(--silver-bright);
+      letter-spacing: -0.03em;
+    }
+
+    .stat-suffix {
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 1.8vw, 2rem);
+      color: var(--cyan);
+      vertical-align: super;
+      line-height: 0;
+    }
+
+    .stat-label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: clamp(0.43rem, 0.6vw, 0.54rem);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(184, 198, 219, 0.26);
+      margin-top: 0.7rem;
+      line-height: 1.6;
+    }
+
+    /* ─ Responsive ─ */
+    @media (max-width: 900px) {
+      #about {
+        grid-template-columns: 1fr;
+      }
+
+      .about-col--photo {
+        position: relative;
+        height: 55vh;
+      }
+
+      .about-photo { min-height: 55vh; }
+
+      .about-col--text {
+        min-height: auto;
+        padding: 3rem 1.5rem 5rem;
+      }
+
+      .about-text-inner { max-width: 100%; }
+    }
+
   </style>
 </head>
 <body>
@@ -474,6 +709,90 @@
     </div><!-- /.hero-inner -->
   </section><!-- /#hero -->
 
+  <!-- ── SECTION 02 — SOBRE ───────────────────────── -->
+  <div class="section-rule"></div>
+
+  <section id="about">
+
+    <!-- SVG Displacement Filter (organic distortion) -->
+    <svg class="svg-filters" aria-hidden="true">
+      <defs>
+        <filter id="about-distort" x="-8%" y="-8%" width="116%" height="116%"
+                color-interpolation-filters="linearRGB">
+          <feTurbulence id="distort-noise"
+            type="turbulence"
+            baseFrequency="0.015 0.011"
+            numOctaves="3"
+            seed="7"
+            result="noise" />
+          <feDisplacementMap id="distort-map"
+            in="SourceGraphic" in2="noise"
+            scale="0"
+            xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+      </defs>
+    </svg>
+
+    <!-- Photo column -->
+    <div class="about-col about-col--photo">
+      <figure class="about-photo" id="about-photo" aria-label="Foto de Ana Beatriz">
+        <div class="about-photo-placeholder">
+          <div class="photo-cell-bg"></div>
+        </div>
+      </figure>
+      <p class="photo-placeholder-label" aria-hidden="true">Foto · Ana Beatriz</p>
+    </div>
+
+    <!-- Text column -->
+    <div class="about-col about-col--text">
+      <div class="about-text-inner">
+
+        <p class="about-eyebrow">
+          <span class="label-rule"></span>
+          <span>Sobre</span>
+        </p>
+
+        <h2 class="about-heading">
+          <span class="line"><span class="line-inner">Transfor-</span></span>
+          <span class="line"><span class="line-inner">mação que</span></span>
+          <span class="line"><span class="line-inner">a ciência</span></span>
+          <span class="line"><span class="line-inner">comprova.</span></span>
+        </h2>
+
+        <blockquote class="about-quote js-reveal">
+          "Cada pele conta a história de uma vida. Meu trabalho é revelar a melhor versão dessa história — com ciência, precisão e cuidado genuíno."
+        </blockquote>
+
+        <p class="about-bio js-reveal">
+          Especialista em estética de alta performance, com formação em Cosmetologia e extensão em Biotecnologia Dermal. Desenvolve protocolos personalizados baseados na biologia individual de cada cliente, unindo evidência clínica com uma experiência verdadeiramente sensorial.
+        </p>
+
+        <div class="about-stats">
+          <div class="stat">
+            <span class="stat-number">
+              <span class="stat-value" data-count="8">0</span><span class="stat-suffix">+</span>
+            </span>
+            <span class="stat-label">Anos de<br>Carreira</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">
+              <span class="stat-value" data-count="500">0</span><span class="stat-suffix">+</span>
+            </span>
+            <span class="stat-label">Clientes<br>Atendidas</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">
+              <span class="stat-value" data-count="12">0</span>
+            </span>
+            <span class="stat-label">Especiali-<br>zações</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </section><!-- /#about -->
+
   <!-- ── SCROLL INDICATOR ──────────────────────────── -->
   <div class="scroll-hint" aria-hidden="true">
     <span>SCROLL</span>
@@ -486,10 +805,16 @@
   ════════════════════════════════════════════════ -->
   <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
 
 
   <script>
+  /* ── Global plugin registration ── */
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+  }
+
   /* ════════════════════════════════════════════════════════════
      MODULE: WebGL Fluid Simulation  (Three.js + GLSL shaders)
   ════════════════════════════════════════════════════════════ */
@@ -819,6 +1144,119 @@
       opacity: 1,
       duration: 1.1
     }, '-=0.45');
+  })();
+
+
+  /* ════════════════════════════════════════════════════════════
+     MODULE: Section 02 — Sobre / A Ciência
+  ════════════════════════════════════════════════════════════ */
+  (function AboutModule() {
+    'use strict';
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+    if (!document.getElementById('about')) return;
+
+    /* ── Eyebrow fade-in ── */
+    gsap.to('.about-eyebrow', {
+      opacity: 1,
+      duration: 1.1,
+      ease: 'power3.out',
+      scrollTrigger: { trigger: '.about-eyebrow', start: 'top 88%', once: true }
+    });
+
+    /* ── Heading: line-by-line reveal (same mechanic as hero name) ── */
+    gsap.to('#about .about-heading .line-inner', {
+      y: 0,
+      duration: 1.25,
+      stagger: 0.09,
+      ease: 'power4.out',
+      scrollTrigger: { trigger: '.about-heading', start: 'top 82%', once: true }
+    });
+
+    /* ── Character crystallisation (blur → clear) ──
+       Each character materialises individually — like a crystal
+       forming from solution, not a terminal decoding.            */
+    function revealChars(el) {
+      const raw = el.textContent;
+      el.innerHTML = '';
+      raw.split('').forEach(ch => {
+        const s = document.createElement('span');
+        s.className = 'char';
+        s.textContent = ch === ' ' ? ' ' : ch;
+        el.appendChild(s);
+      });
+
+      gsap.to(el.querySelectorAll('.char'), {
+        opacity: 1,
+        filter: 'blur(0px)',
+        duration: 0.55,
+        stagger: { each: 0.014, ease: 'none' },
+        ease: 'power1.out',
+        scrollTrigger: { trigger: el, start: 'top 80%', once: true }
+      });
+    }
+
+    document.querySelectorAll('.js-reveal').forEach(revealChars);
+
+    /* ── Stats: count-up + fade-in ── */
+    ScrollTrigger.create({
+      trigger: '.about-stats',
+      start: 'top 84%',
+      once: true,
+      onEnter() {
+        gsap.to('.about-stats', { opacity: 1, duration: 0.8, ease: 'power2.out' });
+
+        document.querySelectorAll('.stat-value[data-count]').forEach(el => {
+          const end = parseInt(el.dataset.count, 10);
+          const obj = { n: 0 };
+          gsap.to(obj, {
+            n: end,
+            duration: end > 100 ? 1.8 : 1.3,
+            ease: 'power2.out',
+            onUpdate() { el.textContent = Math.round(obj.n); },
+            onComplete() { el.textContent = end; }
+          });
+        });
+      }
+    });
+
+    /* ── Photo: organic displacement breathing ──
+       The photo feels alive — like looking through water at skin.
+       Frequency breathes slowly; scroll adds a gentle wave.      */
+    const noiseEl = document.getElementById('distort-noise');
+    const mapEl   = document.getElementById('distort-map');
+
+    if (noiseEl && mapEl) {
+      const state = { freq: 0.015 };
+
+      const breathe = gsap.to(state, {
+        freq: 0.023,
+        duration: 5.5,
+        repeat: -1,
+        yoyo: true,
+        ease: 'sine.inOut',
+        paused: true,
+        onUpdate() {
+          noiseEl.setAttribute('baseFrequency',
+            `${state.freq.toFixed(4)} ${(state.freq * 0.72).toFixed(4)}`);
+        }
+      });
+
+      ScrollTrigger.create({
+        trigger: '#about',
+        start: 'top bottom',
+        end:   'bottom top',
+        onUpdate(self) {
+          /* Bell-curve: distortion peaks when section is centred on screen */
+          const wave  = Math.sin(self.progress * Math.PI);
+          const scale = 1.5 + wave * 6; /* range: 1.5 → 7.5 px */
+          mapEl.setAttribute('scale', scale.toFixed(2));
+        },
+        onEnter:     () => breathe.play(),
+        onLeave:     () => { breathe.pause(); mapEl.setAttribute('scale', '0'); },
+        onEnterBack: () => breathe.play(),
+        onLeaveBack: () => { breathe.pause(); mapEl.setAttribute('scale', '0'); }
+      });
+    }
   })();
 
 
